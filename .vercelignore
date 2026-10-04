@@ -1,0 +1,9 @@
+/node_modules
+/tests
+.git
+.github
+.env
+.env.backup
+.phpunit.result.cache
+phpunit.xml
+webpack.mix.js
