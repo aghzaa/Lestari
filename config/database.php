@@ -58,14 +58,33 @@ return [
             'prefix_indexes' => true,
             'strict' => true,
             'engine' => null,
-            'options' => extension_loaded('pdo_mysql') ? array_filter([
-                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
-                defined('PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT') ? PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT : 1014 => env('MYSQL_ATTR_SSL_VERIFY_SERVER_CERT') !== null
-                    ? filter_var(env('MYSQL_ATTR_SSL_VERIFY_SERVER_CERT'), FILTER_VALIDATE_BOOLEAN)
-                    : null,
-            ], function ($val) {
-                return $val !== null;
-            }) : [],
+            'options' => extension_loaded('pdo_mysql') ? (function () {
+                $options = [];
+                $caPath = env('MYSQL_ATTR_SSL_CA');
+
+                if ($caPath && file_exists($caPath)) {
+                    $options[PDO::MYSQL_ATTR_SSL_CA] = $caPath;
+                } else {
+                    foreach ([
+                        '/etc/pki/tls/certs/ca-bundle.crt',
+                        '/etc/ssl/certs/ca-certificates.crt',
+                        '/etc/ssl/cert.pem',
+                    ] as $systemCa) {
+                        if (file_exists($systemCa)) {
+                            $options[PDO::MYSQL_ATTR_SSL_CA] = $systemCa;
+                            break;
+                        }
+                    }
+                }
+
+                if (env('MYSQL_ATTR_SSL_VERIFY_SERVER_CERT') !== null) {
+                    $verify = filter_var(env('MYSQL_ATTR_SSL_VERIFY_SERVER_CERT'), FILTER_VALIDATE_BOOLEAN);
+                    $key = defined('PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT') ? PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT : 1014;
+                    $options[$key] = $verify;
+                }
+
+                return $options;
+            })() : [],
         ],
 
         'pgsql' => [
