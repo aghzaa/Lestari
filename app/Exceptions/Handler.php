@@ -35,7 +35,14 @@ class Handler extends ExceptionHandler
     public function register()
     {
         $this->reportable(function (Throwable $e) {
-            //
+            // Log Vercel memotong baris panjang, jadi tulis ringkasan pendek terpisah.
+            error_log(sprintf(
+                'LESTARI_ERROR %s: %s @ %s:%d',
+                get_class($e),
+                $e->getMessage(),
+                $e->getFile(),
+                $e->getLine()
+            ));
         });
     }
 }
