@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Masuk Fasilitator - LESTARI Jovian</title>
+    <link rel="icon" type="image/png" href="{{ asset('img/logo-transparant.png') }}">
 
     <!-- Google Fonts: Playfair Display & Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -101,21 +102,8 @@
             
             <!-- Logo & Brand Header -->
             <div class="flex flex-col items-center mb-6 text-center">
-                <div class="w-20 h-20 mb-3 p-2.5 rounded-full bg-white border border-amber-300 shadow-md flex items-center justify-center">
-                    <svg width="100%" height="100%" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="60" cy="60" r="56" stroke="url(#goldGrad)" stroke-width="3" fill="none"/>
-                        <circle cx="60" cy="60" r="48" fill="#8B0000"/>
-                        <path d="M60 28C60 28 38 42 38 64C38 76.15 47.85 86 60 86C72.15 86 82 76.15 82 64C82 42 60 28 60 28Z" fill="url(#goldGrad)" opacity="0.9"/>
-                        <path d="M60 38C60 38 46 50 46 65C46 72.7 52.3 79 60 79C67.7 79 74 72.7 74 65C74 50 60 38 60 38Z" fill="#8B0000"/>
-                        <path d="M60 48V72M50 60H70" stroke="#D4AF37" stroke-width="2.5" stroke-linecap="round"/>
-                        <defs>
-                            <linearGradient id="goldGrad" x1="0" y1="0" x2="120" y2="120" gradientUnits="userSpaceOnUse">
-                                <stop offset="0%" stop-color="#F7F0D4"/>
-                                <stop offset="50%" stop-color="#D4AF37"/>
-                                <stop offset="100%" stop-color="#996515"/>
-                            </linearGradient>
-                        </defs>
-                    </svg>
+                <div class="w-20 h-20 mb-3 p-2 rounded-full bg-white/95 border border-amber-300 shadow-md flex items-center justify-center">
+                    <img src="{{ asset('img/logo-transparant.png') }}" alt="Logo LESTARI Jovian" class="w-full h-full object-contain filter drop-shadow-sm">
                 </div>
                 
                 <h1 class="font-serif text-3xl font-extrabold text-gold-gradient mb-1">

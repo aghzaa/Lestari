@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Dashboard Fasilitator') - LESTARI Jovian</title>
+    <link rel="icon" type="image/png" href="{{ asset('img/logo-transparant.png') }}">
 
     <!-- Google Fonts: Playfair Display & Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -93,8 +94,8 @@
             <!-- Brand Header -->
             <div class="p-6 border-b border-gray-100 flex items-center justify-between">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-red-800 to-red-600 flex items-center justify-center text-amber-200 font-serif font-bold text-lg shadow-sm">
-                        L
+                    <div class="w-10 h-10 rounded-xl bg-amber-50 border border-amber-200/70 p-1 flex items-center justify-center shadow-sm">
+                        <img src="{{ asset('img/logo-transparant.png') }}" alt="Logo LESTARI Jovian" class="w-full h-full object-contain">
                     </div>
                     <div>
                         <h1 class="font-serif font-bold text-lg text-gray-900 leading-tight">LESTARI</h1>
