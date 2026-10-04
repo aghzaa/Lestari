@@ -26,18 +26,26 @@ class AdminController extends Controller
             ->first();
         $topCategory = $topCategoryRecord ? $topCategoryRecord->kategori . ' (' . $topCategoryRecord->total . ')' : 'Belum ada data';
 
-        // Distribusi berdasarkan Jenjang Pendidikan
+        // Distribusi berdasarkan Jenjang Pendidikan (Dioptimasi menjadi 1 query agregasi)
         $educationList = ['SD', 'SMP', 'SMA', 'MAHASISWA', 'UMUM'];
+        $rawEduCounts = Story::select('pendidikan', DB::raw('count(*) as total'))
+            ->groupBy('pendidikan')
+            ->pluck('total', 'pendidikan')
+            ->toArray();
         $educationCounts = [];
         foreach ($educationList as $edu) {
-            $educationCounts[$edu] = Story::where('pendidikan', $edu)->count();
+            $educationCounts[$edu] = $rawEduCounts[$edu] ?? 0;
         }
 
-        // Distribusi berdasarkan Kategori Cerita
+        // Distribusi berdasarkan Kategori Cerita (Dioptimasi menjadi 1 query agregasi)
         $categoryList = ['Diri Sendiri', 'Keluarga', 'Teman', 'Kekasih'];
+        $rawCatCounts = Story::select('kategori', DB::raw('count(*) as total'))
+            ->groupBy('kategori')
+            ->pluck('total', 'kategori')
+            ->toArray();
         $categoryCounts = [];
         foreach ($categoryList as $cat) {
-            $categoryCounts[$cat] = Story::where('kategori', $cat)->count();
+            $categoryCounts[$cat] = $rawCatCounts[$cat] ?? 0;
         }
 
         // 5 Cerita Terakhir yang Masuk
