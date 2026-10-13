@@ -142,7 +142,7 @@
                         <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
                             <i class="fa-solid fa-envelope"></i>
                         </div>
-                        <input type="email" id="email" name="email" value="{{ old('email', 'admin@lestari.com') }}" required autofocus
+                        <input type="email" id="email" name="email"  required autofocus
                                class="input-custom w-full pl-10 pr-4 py-3 rounded-2xl text-sm text-gray-900 bg-white placeholder-gray-400"
                                placeholder="nama@email.com">
                     </div>
@@ -186,7 +186,7 @@
             <!-- Default Credential Helper Note -->
             <div class="mt-6 pt-4 border-t border-gray-200 text-center">
                 <p class="text-[11px] text-gray-500">
-                    Akun bawaan seeder: <strong class="text-gray-700">admin@lestari.com</strong> / sandi: <strong class="text-gray-700">password</strong>
+                    {{-- Akun bawaan seeder: <strong class="text-gray-700">admin@lestari.com</strong> / sandi: <strong class="text-gray-700">password</strong> --}}
                 </p>
             </div>
 
